@@ -1,0 +1,19 @@
+<h1>Una Pipa {{fecha | date: "medium"}}</h1>
+<p>El dolar esta a esta pipa: {{dolar | currency}}</p>
+<p>{{valorContador}}</p>
+<button (click)="increment()">Incrementar</button>
+<button (click)="decrement()">Decrementar</button>
+<br>
+<h5>---------------------INPUT--------------------------</h5>
+<app-hijo [recibeHijo]="mensajePadre"></app-hijo>
+<br>
+
+<h5>---------------------OUTPUT-----------------------</h5>
+<app-hijo (mensajeDesdeHijo)="recibirMensaje($event)"></app-hijo>
+<p>El mensaje recibido desde el hijo es: {{mensajeRecibido}}</p>
+<br>
+
+<h5>--------------SERVCIOS Y DEPENDENCIAS PADRE---------------</h5>
+<p appEstiloHermanos>{{nombre | miPipePersonalizado}}</p>
+<button type="button" (click)="saludar()">Saludar</button>
+<button type="button" (click)="preguntar()">Preguntar por hijo</button>
