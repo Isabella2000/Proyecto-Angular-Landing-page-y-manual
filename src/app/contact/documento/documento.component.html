@@ -1,0 +1,22 @@
+<form [formGroup]="formularioDocumento">
+  <label for="documento" class="form-label"
+    >{{ variable_tipo_documento }}</label
+  >
+  <input
+    type="number"
+    class="form-control"
+    id="documento"
+    [ngClass]="{
+      'is-invalid':
+        hasErrors('documento', 'required') ||
+        hasErrors('documento', 'minlength')
+    }"
+  />
+
+  <div class="text-danger" *ngIf="hasErrors('documento', 'required')">
+    El documento es requerido
+  </div>
+  <div class="text-danger" *ngIf="hasErrors('documento', 'minlength')">
+    El documento requiere minimo 3 caracteres
+  </div>
+</form>

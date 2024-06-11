@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="row">
+    <!-- <form class="mb-3 mt-4 col" #myform="ngForm" (ngSubmit)="enviarPlantilla()">
+      <h2>Formulario de plantilla</h2>
+      <div class="mb-3 mt-4">
+        <label for="name" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="usuario.nombre"
+          [ngModelOptions]="{ standalone: true }"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [(ngModel)]="usuario.email"
+          [ngModelOptions]="{ standalone: true }"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form> -->
+
+    <form
+      class="mb-3 mt-4 col"
+      [formGroup]="formularioContacto"
+      (ngSubmit)="enviarReactivo()"
+    >
+      <h2>Formulario Reactivo</h2>
+      <div class="mb-3 mt-4">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [ngClass]="{
+            'is-invalid':
+              hasErrors('nombre', 'required') ||
+              hasErrors('nombre', 'minlength')
+          }"
+        />
+
+        <div class="text-danger" *ngIf="hasErrors('nombre', 'required')">
+          El nombre es requerido
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('nombre', 'minlength')">
+          El nombre requiere minimo 3 caracteres
+        </div>
+      </div>
+
+      <div class="mb-3 mt-4">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input
+          type="text"
+          class="form-control"
+          id="apellido"
+          [ngClass]="{
+            'is-invalid':
+              hasErrors('apellido', 'required') ||
+              hasErrors('apellido', 'minlength')
+          }"
+        />
+
+        <div class="text-danger" *ngIf="hasErrors('apellido', 'required')">
+          El apellido es requerido
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('apellido', 'minlength')">
+          El apellido requiere minimo 3 caracteres
+        </div>
+      </div>
+
+      <div class="mb-3 mt-4">
+        <label for="tipo_documento" class="form-label">Tipo de documento</label>
+        <select
+          class="form-select"
+          id="tipo_documento"
+          formControlName="tipo_documento"
+        >
+          <option value="Cedula">Cedula</option>
+          <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+          <option value="Pasaporte">Pasaporte</option>
+        </select>
+      </div>
+
+      <div class="mb-3 mt-4">
+        <documento-input [tipo_documento]="tipo_documento"/>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label" formControlName="email"
+          >Email</label
+        >
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [ngClass]="{
+            'is-invalid':
+              hasErrors('email', 'required') || hasErrors('email', 'email')
+          }"
+        />
+
+        <div class="text-danger" *ngIf="hasErrors('email', 'email')">
+          Email invalido
+        </div>
+        <div class="text-danger" *ngIf="hasErrors('email', 'required')">
+          Email requerido
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+</div>
